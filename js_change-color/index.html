@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            transition: background-color 1s ease;
+        }
+        div {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .colorbtn {
+            background-color: cadetblue;
+            width: 20%;
+            height: 7%;
+            font-size: medium;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            box-shadow: 1px 1px 5px;
+            border-color: cadetblue;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div>
+        <button class="colorbtn">color me</button>
+    </div>
+
+
+    <script>
+        const colorbtn = document.querySelector(".colorbtn")
+        const body = document.querySelector('body')
+        let check = 0;
+
+        function randomColor() {
+            function getRandomColor() { //To give me a new rgb number everytime
+                return (Math.floor(Math.random() * (255 - 10)) + 10);
+            }
+            let time = 2000
+
+            timeInterval = setInterval(() => {
+                const randomColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
+                body.style.backgroundColor = randomColor
+                console.log(randomColor);
+            }, time);
+        }
+
+        function pause() {
+            clearInterval(timeInterval)
+        }
+
+        
+        
+        colorbtn.addEventListener("click", function click() {
+            if (check == 0) {
+                colorbtn.innerHTML = "stop"
+                colorbtn.style.width = "10%"
+                colorbtn.style.backgroundColor = "white";
+                colorbtn.style.border = "white";
+
+console.log(check)
+                randomColor()
+                check = 1
+                console.log(check)
+            }
+            else {
+                colorbtn.innerHTML = "color me"
+                colorbtn.style.width = "20%";
+                colorbtn.style.backgroundColor = "cadetblue";
+                body.style.backgroundColor = "white"
+
+                pause()
+               
+                check = 0
+            }
+
+
+        })
+
+    </script>
+
+</body>
+</html>

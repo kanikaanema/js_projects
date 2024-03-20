@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telephone Number Validator</title>
+  <link rel="stylesheet" href="styles.css">
+<style>
+  body{
+    background-color:darkolivegreen;
+    
+}
+hr{
+  margin-right: 15px;
+  margin-left: 15px;
+
+}
+h2{
+  color: black;
+  text-align:center;
+  background-color: white;
+  height: 70px;
+  padding-top: 15px;
+  margin-top: 15px; 
+   border-radius: 5px; 
+
+}
+.container {
+    background-color: black;
+    height: 80vh;
+    width: 40vw;
+    margin:0 auto;
+    border-radius: 5px;
+    
+
+}
+#content{
+  /* background-color: aquamarine; */
+  width: 230px;
+  height: 35vh;
+  text-align: center;
+  margin: 20px 10px;
+  padding-top: 20px;
+  box-shadow: 2px 2px 2px 2px rgb(72, 71, 71);
+  border-radius: 5px ;
+  /* border-color: rgba(249, 249, 249, 0.966); */
+}
+input{
+  border: none;
+  height: 25px;
+  border-radius: 3px;
+  
+}
+.btn{
+  /* background-color: blue; */
+  width: 200px;
+  display: flex; 
+  justify-content: space-evenly; 
+   /* padding-left: 10px; */
+  margin: 4px 15px;
+}
+
+#check-btn {
+  background-color: blanchedalmond;
+  border-color: antiquewhite;
+  width: 40%;
+  height:30px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+#clear-btn{
+  background-color: blanchedalmond;
+  border-color: antiquewhite;
+  width: 40%;
+  height:30px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+#results-div{
+  background-color: brown;
+  margin: 20px 30px;
+  height: 80px;
+  padding-top: 30px;
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+  <div class="container">
+    <h2>Telephone Number Validator</h2>
+    <hr >
+    <div id="content">
+      <div id="input">
+        <input id="user-input" autofocus />
+        <div class="btn">
+          <button id="check-btn" onclick="validNumber()">check</button>
+          <button id="clear-btn">clear</button>
+        </div>
+      </div>
+      <div id="results-div"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

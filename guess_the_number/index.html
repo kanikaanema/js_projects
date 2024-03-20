@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        span {
+            background-color: dimgrey;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <label for="field">guess a number</label>
+            <input type="text" id="field" />
+            <button>submit</button>
+        </form>
+        <div>
+            <p>previous guesses: <span class="previous_guess"></span></p>
+            <p> guesses remaining: <span class="remaining_guess">10</span></p>
+            <p class="lowOrhi"></p>
+
+
+        </div>
+
+
+    </div>
+
+    <script>
+
+        let randomnumber = parseInt(Math.random() * 10 + 1)
+        console.log(randomnumber)
+
+        const submit = document.querySelector("button")
+        const userInput = document.querySelector("#field");
+        const previousGuess = document.querySelector(".previous_guess");
+        const remaining = document.querySelector(".remaining_guess");
+        const lowOrhi = document.querySelector(".lowOrhi");
+
+const p = document.createElement("p");
+
+        let prevGuess = [];
+        let numGuess = 1;
+        let playGame = true;
+
+        if (playGame) {
+            submit.addEventListener("click", function (e) {
+                e.preventDefault()
+                const guess = parseInt(userInput.value)
+
+                console.log(guess)
+                validateGuess(guess)
+            })
+        }
+
+        function validateGuess(guess) {
+            if (isNaN(guess)) {
+                lowOrhi.innerText = "enter a valid number"
+            } else if (guess > 10) {
+                lowOrhi.innerText = "Enter a number less than or equal to 10"
+            } else if (guess < 1) {
+                lowOrhi.innerText = "please enter a number greater than or equal to 1"
+            } else {
+                prevGuess.push(guess)
+                if (numGuess === 10) {
+                    displayGuess(guess)
+                    displayMessages(`${randomnumber} Game Over`)
+                    endGame()
+                } else {
+                    displayGuess(guess)
+                    checkGuess(guess)
+                }
+            }
+
+            function checkGuess() {
+                if (guess === randomnumber) {
+                    displayMessages("you guessed it")
+                    endGame()
+                } else if (guess < randomnumber) {
+                    displayMessages("number is low")
+                } else if (guess > randomnumber) {
+                    displayMessages("number is high")
+                }
+            }
+
+            function displayGuess(guess) {
+                userInput.value = "";
+                previousGuess.innerHTML += `${guess}`;
+                numGuess++;
+                remaining.innerHTML = `${11 - numGuess}`
+            }
+
+            function displayMessages(message) {
+                lowOrhi.innerHTML = `<h2>${message}</h2>`
+            }
+
+            function endGame(){
+              userInput.value = "";
+              userInput.setAttribute("disabled", "")
+              p.classList.add("button");
+              p.innerHTML = `<span class="newgame">start new game</span>`;
+              lowOrhi.appendChild(p)
+              playGame = false;
+              newGame()
+
+            }
+
+           function newGame(){
+            const newGame = document.querySelector(".newgame");
+            newGame.style.cursor = "pointer"
+            newGame.addEventListener("click", function(e){
+                 randomnumber = parseInt(Math.random() * 10 + 1)
+                playGame = true
+               userInput.removeAttribute("disabled");
+               lowOrhi.removeChild(p)
+               previousGuess.innerHTML = ""
+               remaining.innerHTML = 10
+               numGuess = 1
+               prevGuess = []
+               displayMessages("")
+
+            })        
+           }
+        }
+
+    </script>
+
+</body>
+
+</html>
